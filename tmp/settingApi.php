@@ -26,7 +26,7 @@ class NtkMpAdmin{
 
         add_action('admin_menu', array($this, 'settingMenu'));
         add_action('admin_init',array($this,'register_setting_and_fields'));
-      
+
        
 	}
 
@@ -49,6 +49,8 @@ class NtkMpAdmin{
                             
         //  add_settings_field('ntk_mp_security_code', 'Security code', array($this,'security_code_input'), 
 		// 					$this->_menuSlug,'abc');
+
+       
     }
 
     public function validate_setting($data_input){

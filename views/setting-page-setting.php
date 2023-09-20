@@ -2,7 +2,7 @@
 
     <h2>My Setting</h2>
 
-    <!-- <?php settings_errors( $this->_menu_slug, false, false );?> -->
+    <?php settings_errors( $this->_menuSlug, false, false );?>
 
     <p>Đây là trang hiển thị các cấu hình của NTK MyPlugin</p>
     <form method="post" action="options.php" id="" enctype="multipart/form-data">

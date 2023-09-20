@@ -42,68 +42,91 @@ class NtkMpAdmin
         add_settings_field(
             'ntk_mp_new_title',
             'Site title',
-            array($this, 'create_input'),
+            // array($this, 'create_input'),
+            array($this, 'create_form'),
             $this->_menuSlug,
-            $idMainSection
+            $idMainSection,
+            array('name' => 'new_title_input')
         );
 
 
-        add_settings_field(
-            'ntk_mp_logo',
-            'Logo',
-            array($this, 'logo_input'),
-            $this->_menuSlug,
-            $idMainSection
-        );
+
     }
 
-    public function validate_setting($data_input)
-    {
-        echo '<pre>';
-        print_r($data_input);
-        echo '</pre>';
-        if (!empty($_FILES['ntk_mp_logo']['name'])) {
-            if (!empty($this->_settingOptions['ntk_mp_logo_path'])) {
+    public function main_section_view() {
+        
+    }
 
-                $override = array('test_form' => false);
-                $time = "2000/08";
-                $fileInfo = wp_handle_upload($_FILES['ntk_mp_logo'], $override, $time);
-                $data_input['ntk_mp_logo'] = $fileInfo['url'];
-                $data_input['ntk_mp_logo_path'] = $fileInfo['file'];
-            }
+    public function create_form($args)
+    {
+        $htmlObj = new ZendvnHtml();
+
+        if ($args['name'] == 'new_title_input') {
+
+            $attr = array(
+                'id' =>'ntk_mp_new_title',
+                'class' =>'abc',
+                'style' => 'width:300px',
+            );
+
+
+
+           echo $htmlObj->textbox("ntk_mp_name[ntk_mp_new_title]", "this is a test");
+          
         }
 
+       
+        
+    }
+    //===============================================
+    //Kiem tra cac dieu kien truoc khi luu du lieu vao database
+    //===============================================
+    public function validate_setting($data_input)
+    {
+       
 
         return $data_input; // lưu vào database
 
     }
 
-
-
-    public function main_section_view()
+    //===============================================
+    //Kiem tra phần mở rộng của file
+    //===============================================
+    private function fileExtionsValidate($file_name, $file_type)
     {
-    }
+        $flag = false;
 
-    public function create_input()
-    {
-        echo '<input type="text" name="ntk_mp_name[ntk_mp_new_title]" value="' .  $this->_settingOptions['ntk_mp_new_title'] . '"/>';
-    }
-
-    public function logo_input()
-    {
-
-        echo '<input type="file" name="ntk_mp_logo" value=""/>';
-        if (!empty($this->_settingOptions['ntk_mp_logo'])) {
-            echo "</br></br><img src='" . $this->_settingOptions['ntk_mp_logo'] . "' width='200' />";
+        $pattern = '/^.*\.(' . strtolower($file_type) . ')$/i'; //$file_type = JPG|PNG|GIF
+        if (preg_match($pattern, strtolower($file_name)) == 1) {
+            $flag = true;
         }
+
+        return $flag;
     }
+    //===============================================
+    //Kiem tra chieu chieu dai cua chuoi
+    //===============================================
+    private function stringMaxValidate($val, $max)
+    {
+        $flag = false;
+
+        $str = trim($val);
+        if (strlen($str) <= $max) {
+            $flag = true;
+        }
+        return $flag;
+    }
+
+
+
+
 
     public function settingMenu()
     {
 
-        // add_menu_page('My Setting title', 'My Setting', 'manage_options', $this->_menuSlug,array($this,'settingPage'));
-        add_options_page('My Setting title', 'My Setting', 'manage_options', $this->_menuSlug, array($this, 'settingPage'));
+        add_menu_page('My Setting title', 'My Setting', 'manage_options', $this->_menuSlug, array($this, 'settingPage'));
     }
+    
 
     public function settingPage()
     {

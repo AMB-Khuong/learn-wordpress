@@ -29,36 +29,29 @@ if(!is_admin()){
 
 
 }else{
-	
+	require_once NTK_MP_INCLUDES_DIR . '/html.php';
 	require_once NTK_MP_PLUGIN_DIR . '/admin.php';
-
+	
     new NtkMpAdmin();
-	
 
+	// add_action('wp_dashboard_setup', 'ntk_mp_widget_simples');
+
+	// function ntk_mp_widget_simples(){
+	// 	wp_add_dashboard_widget('Nkt_Mp_Widget_Simple');
+	
+	// }
+	
 	
 }
 
+//  require_once NTK_MP_WIDGET_DIR . '/simple.php';
 
-/* require_once ZENDVN_MP_METABOX_DIR . '/taxonomy.php';
-new Zendvn_Mp_Mb_Taxonomy();
-*/
-// require_once ZENDVN_MP_CP_DIR . '/product.php';
-// new Zendvn_Mp_Cp_Product();
 
-// require_once ZENDVN_MP_CT_DIR . '/book.php';
-// new Zendvn_Mp_CT_BookCategory(); 
-/*
-require_once ZENDVN_MP_CP_DIR . '/count_views.php';
-new Zendvn_Mp_Count_Views();*/
 
-/* require_once ZENDVN_MP_SHORTCODE_DIR . '/main.php';
-new Zendvn_Mp_SC_Main();
 
-require_once ZENDVN_MP_WIDGET_DIR . '/last_post.php';
 
-function last_post_widget_init(){
-	register_widget('Zendvn_Mp_Widget_Last_Post');
-}
+// add_action('widgets_init', 'ntk_mp_widget_simples');
+// function ntk_mp_widget_simples(){
+// 	register_widget('Nkt_Mp_Widget_Simple');
 
-add_action('widgets_init','last_post_widget_init'); 
- */
+// }
