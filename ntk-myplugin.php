@@ -34,6 +34,9 @@ if(!is_admin()){
 	
     new NtkMpAdmin();
 
+	require_once NTK_MP_WIDGET_DIR. '/db_simple.php';
+	new Ntk_Widget_Db_Simple();
+
 	// add_action('wp_dashboard_setup', 'ntk_mp_widget_simples');
 
 	// function ntk_mp_widget_simples(){

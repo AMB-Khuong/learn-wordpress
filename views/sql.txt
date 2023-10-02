@@ -1,0 +1,75 @@
+ ============================================
+ 1. get_row
+ ============================================
+ 
+ 
+ <?php
+        global $wpdb;
+
+       echo  $table = $wpdb->prefix . 'test';
+
+        $query = "SELECT * FROM {$table}";
+        $output = OBJECT;
+        $info = $wpdb->get_row($query,$output,1); // lấy ra duy nhất 1 dòng
+
+        echo '<pre>';
+        print_r($info->id);
+        echo '</pre>';
+        ?>
+ ============================================
+ 2. get_col
+ ============================================
+
+         echo  $table = $wpdb->prefix . 'test';
+
+        $query = "SELECT * FROM {$table}";
+      
+        $info = $wpdb->get_col($query,1); // lấy ra duy nhất 1 cột tham số thứ 2 số cột muốn lấy
+
+        echo '<pre>';
+        print_r($info);
+        echo '</pre>';
+============================================
+ 3. get_results lấy all dòng
+ ============================================
+
+         global $wpdb;
+
+       echo  $table = $wpdb->prefix . 'test';
+
+        $query = "SELECT * FROM {$table}";
+      
+        $info = $wpdb->get_results($query); // lấy ra duy nhất 1 cột tham số thứ 2 số cột muốn lấy
+
+        echo '<pre>';
+        print_r($info);
+        echo '</pre>';
+ ============================================
+ 4. insert($table,$data,$format) lấy all dòng
+ ============================================
+
+         global $wpdb;
+
+       echo  $table = $wpdb->prefix . 'test';
+
+        $query = "SELECT * FROM {$table}";
+      
+        $info = $wpdb->get_results($query); // lấy ra duy nhất 1 cột tham số thứ 2 số cột muốn lấy
+
+        echo '<pre>';
+        print_r($info);
+        echo '</pre>';
+
+ ============================================
+ 4. prepe($query,$arg) insert chống sql injection
+ ============================================
+
+ 
+ ============================================
+ 5. delete($table,$data,$format) xóa all dòng
+ ============================================
+
+  ============================================
+ 6. query($query) custom sql
+ ============================================
+
